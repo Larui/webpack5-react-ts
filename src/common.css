@@ -1,0 +1,34 @@
+html,
+body,
+#content {
+  height: 100%;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+p {
+  margin-bottom: 0;
+}
+
+.f-toe {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.f-line2-toe {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.blod {
+  font-family: PingFangSC-Medium, PingFang SC;
+}
+
+.ant-btn[disabled] {
+  background-color: #eee !important;
+  border-color: #eee !important;
+  cursor: not-allowed !important;
+  color: #999 !important;
+}

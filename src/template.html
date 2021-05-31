@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/antd.min.css" />
+    <script src="/node_modules/@babel/polyfill/dist/polyfill.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/react/umd/react.production.min.js"></script>
+    <script src="/node_modules/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="/node_modules/react-router/umd/react-router.min.js"></script>
+    <script src="/node_modules/redux/dist/redux.min.js"></script>
+    <script src="/node_modules/react-redux/dist/react-redux.min.js"></script>
+    <script src="/node_modules/moment/min/moment.min.js"></script>
+    <script src="/node_modules/moment/locale/zh-cn.js"></script>
+    <script src="/node_modules/antd/dist/antd.min.js"></script>
+    <script src="/node_modules/lodash/lodash.min.js"></script>
+    <script src="/node_modules/@convertlab/c-design/dist/main.js"></script>
+    <script src="/node_modules/@convertlab/uilib/lib/index.js"></script>
+    <script src="/node_modules/@convertlab/ui-common/lib/index.js"></script>
+  </head>
+
+  <script type="text/javascript">
+    var GlobalVariable = {
+      tencentAppId: 1254003887,
+      uuid: "9dd5deafd4f2466c9ca684cae784faba",
+      serverUrl: "//a-test.huiju.cool/api/extvideo",
+      staticUrl: "//a-test.huiju.cool/statics/extvideo",
+      trackServer: "//cbe-test.huiju.cool",
+      hostingServer: "//host-sandbox.huiju.cool",
+      tenantHash: "1238467299",
+      signCode: "313123",
+      enrollStatus: 0,
+      customerInfo: {
+        cid: "111",
+        img: "",
+        email: "",
+        mobile: "",
+        displayName: "",
+        openId: "",
+      },
+    };
+
+    window.onload = function () {
+      const trackParams = getTrackParam();
+      function getTrackParam() {
+        let searchMap = {};
+        let search = decodeURIComponent(location.search);
+        search = search.slice(1, search.length);
+        search = search.split("&").map((str) => {
+          let key = str.split("=")[0];
+          let value = str.split("=")[1];
+          if (key.indexOf("cl_") === 0) searchMap[key] = value;
+        });
+        return searchMap;
+      }
+
+      const getParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r) return decodeURI(r[2]);
+        return null; //返回参数值
+      };
+      var _cl_tracker = window._cl_tracker;
+      if (_cl_tracker && _cl_tracker.ready) {
+        _cl_tracker.ready(function () {
+          this.push({
+            pageId: GlobalVariable.targetId,
+            pageType: "file",
+          });
+
+          var cl_rfp = getParam("cl_rfp");
+          var trackData = {
+            targetId: GlobalVariable.targetId,
+            targetName: GlobalVariable.targetName,
+            referPlan: cl_rfp,
+            ...trackParams,
+          };
+          if (GlobalVariable.campaignUuid) {
+            trackData.campaign = GlobalVariable.campaignUuid;
+          }
+          if (GlobalVariable.customerInfo.openId) {
+            trackData.identityType = "wechat";
+            trackData.identityValue = GlobalVariable.customerInfo.openId;
+          }
+          this.track("open_content_page", trackData);
+        });
+      }
+    };
+  </script>
+  <body>
+    <div id="content"></div>
+    <div id="dialog"></div>
+  </body>
+  <script src="//cbe.dmhub.cn/cbe/collect?tid=1734229266&timestamp=1598939949698&at=0"></script>
+</html>

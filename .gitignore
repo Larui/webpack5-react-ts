@@ -1,0 +1,16 @@
+# Mac OS
+.DS_Store
+
+# NPM
+/node_modules/
+npm-*
+package-lock.json
+
+
+# output目录
+/dist/
+/.opt-in
+.vscode/
+.cache-loader/
+
+

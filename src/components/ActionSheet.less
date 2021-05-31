@@ -1,0 +1,49 @@
+.action-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1000;
+  padding: 24px;
+  padding-top: 42px;
+  box-sizing: border-box;
+  animation-duration: 0.3s;
+  animation-name: slide-down-out;
+  animation-fill-mode: forwards;
+  overflow-y: auto;
+
+  &.show {
+    display: block;
+    animation-duration: 0.3s;
+    animation-name: slide-up-in;
+  }
+
+  &-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 22px;
+    color: #CCC;
+  }
+}
+
+@keyframes slide-up-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down-out {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+    display: none;
+  }
+}

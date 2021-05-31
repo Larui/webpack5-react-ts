@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "allowUmdGlobalAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "module": "ES2015",
+    "target": "ES6",
+    "alwaysStrict": true,
+    "noImplicitAny": false,
+    "jsx": "react",
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "lib": ["DOM"],
+    "baseUrl": "."
+  },
+  "include": ["./src"]
+}
